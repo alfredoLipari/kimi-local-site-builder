@@ -1,0 +1,30 @@
+{
+  "_note": "Forno Zagara is a made-up business for this demo. Any resemblance to a real one is accidental.",
+  "language": "it",
+  "name": "Forno Zagara",
+  "category": "Pizzeria",
+  "address": "Via dei Candelai 48, 90134 Palermo",
+  "phone": "+39 091 555 0142",
+  "email": "ciao@fornozagara.example",
+  "hours": [
+    { "days": "Martedì – Domenica", "open": "19:00", "close": "23:30" },
+    { "days": "Lunedì", "open": null, "close": null, "note": "Chiuso" }
+  ],
+  "about": "Forno a legna, impasto a lunga lievitazione di 48 ore con farine siciliane di grani antichi. Una sala piccola, una ventina di coperti, a due passi dal mercato del Capo.",
+  "menu": [
+    { "name": "Margherita", "description": "Pomodoro siccagno, fiordilatte, basilico", "price": 8.0 },
+    { "name": "Zagara", "description": "Fiordilatte, alici di Sciacca, scorza d'arancia, finocchietto", "price": 12.5 },
+    { "name": "Capo", "description": "Pomodoro, tuma, cipolla di Giarratana, origano", "price": 10.0 },
+    { "name": "Sfincione della casa", "description": "Come in via dei Candelai da sempre: cipolla, caciocavallo, mollica tostata", "price": 6.5 }
+  ],
+  "reviews": {
+    "source": "Google",
+    "rating": 4.7,
+    "quotes": [
+      { "author": "Giulia R.", "text": "L'impasto più leggero che abbia mangiato a Palermo. La Zagara con le alici e l'arancia è una sorpresa." },
+      { "author": "Marco T.", "text": "Posto piccolo, conviene prenotare. Sfincione da tornarci apposta." }
+    ]
+  },
+  "services": ["Prenotazione telefonica", "Asporto"],
+  "photos": []
+}
