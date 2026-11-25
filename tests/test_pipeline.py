@@ -49,6 +49,7 @@ class Pipeline(unittest.TestCase):
             self.assertFalse({"temperature", "top_p", "max_tokens"} & req.keys())
         self.assertEqual(brief_req["response_format"]["type"], "json_schema")
         self.assertTrue(brief_req["response_format"]["json_schema"]["strict"])
+        self.assertEqual((brief_req["reasoning_effort"], page_req["reasoning_effort"], repair_req["reasoning_effort"]), ("high", "max", "low"))
         self.assertTrue(page_req["stream"])
         self.assertEqual(page_req["stream_options"], {"include_usage": True})
         self.assertEqual(repair_req["tool_choice"], "required")

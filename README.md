@@ -1,6 +1,6 @@
 # kimi-local-site-builder
 
-From a local business's public facts to a previewable one-page site, on [Kimi K3](https://platform.kimi.ai/docs/guide/kimi-k3-quickstart). About 900 lines of Python, one dependency.
+From a local business's public facts to a previewable one-page site, on [Kimi K3](https://platform.kimi.ai/docs/guide/kimi-k3-quickstart). About 1,000 lines of Python, one dependency.
 
 ```
 facts.json ──▶ brief ──▶ page ──▶ evidence gate ──▶ index.html ──▶ edits in plain words
@@ -35,9 +35,15 @@ python -m sitekit edit "Aggiungi un pulsante WhatsApp nell'hero"
 python -m sitekit check                 # runs the gate again, no API call
 ```
 
+On Windows PowerShell, set the key with `$env:MOONSHOT_API_KEY = "sk-..."` and open the page with `start out\index.html`.
+
 `build` writes four files to `out/`: `brief.json`, `index.html`, `facts.json` and `report.json` (what the gate caught, and the token usage of the run).
 
-The example business, Forno Zagara, is made up. To try your own, copy the file and change the values; the keys are free-form, the only one the code reads is `language`.
+The example business, Forno Zagara, is made up, and its photos are stock pictures. To try your own, copy the file and change the values. The keys are free-form apart from two: `language`, and `photos`, a list of `{url, shows}` where `shows` says in a sentence what is in the picture.
+
+## Example output
+
+[The page Kimi K3 built for the example business](https://alfredolipari.github.io/kimi-local-site-builder/), from one `build` run of `examples/forno-zagara.json`. Nothing was edited by hand apart from the demo note in the footer. The brief K3 wrote for it is in [`docs/brief.json`](docs/brief.json) and the run report, with token usage, in [`docs/report.json`](docs/report.json).
 
 ## How it works
 
@@ -52,7 +58,7 @@ Everything Kimi-specific sits in [`sitekit/kimi.py`](sitekit/kimi.py), about 150
 
 ### 1. A brief, as strict JSON
 
-The first call asks for a design brief: a one-sentence concept, tone, palette, hero copy and the list of sections to build. Step 2 reads those fields directly, so the call uses Structured Output:
+The first call asks for a design brief: a one-sentence concept, tone, palette, two Google Fonts, the art direction (layout, hero, a recurring visual device, motion), hero copy, and the list of sections, each with its own treatment and the photo it uses. Step 2 reads those fields directly, so the call uses Structured Output:
 
 ```python
 reply = kimi.chat(
@@ -66,7 +72,9 @@ reply = kimi.chat(
 brief = json.loads(reply.content)
 ```
 
-The schema keeps to what strict mode handles well: nested objects, arrays, an `enum` for section ids, every field required, `additionalProperties: false`. The section list is where the brief earns its place. The model is told to plan a section only if the facts can fill it, so a business with no reviews gets no reviews section instead of an empty one.
+The schema keeps to what strict mode handles well: nested objects, arrays, an `enum` for section ids, every field required, `additionalProperties: false`.
+
+Two things in the brief do most of the work. The section list: the model plans a section only if the facts can fill it, so a business with no reviews gets no reviews section instead of an empty one. And the art direction: my first version of this prompt asked only for a concept and colours, and the pages came back correct and anonymous, a centred headline on a pale gradient and a grid of rounded cards. The brief now has to commit to a hero composition and a different treatment for each section, and names the defaults it must not reach for. The page prompt is told to execute that direction, not to water it down.
 
 ### 2. The page, streamed
 
@@ -90,6 +98,8 @@ The prompt fixes a small contract that the next two steps depend on:
 - every block is a `<section data-section="id">`;
 - colours and fonts are CSS custom properties in one `:root { }` block.
 
+The page is one HTML file with its CSS inline and no JavaScript. The only things it loads from outside are the two Google Fonts from the brief and the photos listed in the facts.
+
 ### 3. The evidence gate
 
 No model here. The gate extracts every checkable value from the page (prices, opening times, phone numbers, emails, ratings, years, outbound links) and looks each one up in the facts file. Anything that is not there is reported with the section it sits in:
@@ -105,6 +115,7 @@ The list goes back to the model as an ordinary edit request (step 4), and the ga
 Two details worth knowing:
 
 - **Derived links are allowed, invented ones are not.** A `tel:` or `wa.me` link must carry a phone number from the facts. A maps link built from the address is fine. An Instagram URL nobody gave us is a violation.
+- **Photos are checked one by one.** An image must be one of the photos in the facts, whether it sits in an `<img>` or in a CSS `background`. Another picture from the same image host does not pass.
 - **What the owner says is evidence.** If an edit request says "from June we also open for lunch, from 12:30", then 12:30 is allowed on the page from then on. Requests are kept in `out/owner-requests.jsonl` for that reason.
 
 The gate checks values, not prose. It will not catch "the best pizza in Palermo". See [Limits](#limits).
@@ -135,7 +146,7 @@ The request is the last thing in the prompt, after the rules, the facts and the 
 
 Things I checked in the [API reference](https://platform.kimi.ai/docs/api/chat) while writing this, in case they save you a round trip:
 
-- **Thinking is always on.** The dial is `reasoning_effort`: `low`, `high` or `max`, and the default is `max`. This project uses `high` for the brief and the page and `low` for edits.
+- **Thinking is always on.** The dial is `reasoning_effort`: `low`, `high` or `max`, and the default is `max`. This project uses `high` for the brief, `max` for the page and `low` for edits.
 - **Sampling parameters are fixed.** `temperature`, `top_p` and the penalties cannot be set on K3, so `kimi.py` never sends them.
 - **Send the whole assistant message back.** In a tool loop the history needs the assistant turn with its `tool_calls` and its `reasoning_content`, not just `content`.
 - **`tool_choice="required"`** makes the first turn of an edit act instead of asking a question back.

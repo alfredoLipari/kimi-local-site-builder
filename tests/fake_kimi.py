@@ -15,12 +15,18 @@ BRIEF = {
     "concept": "La pizzeria di via dei Candelai dove l'arancia finisce sulla pizza.",
     "tone": "Diretto, di quartiere",
     "palette": {"background": "#fbf6ee", "surface": "#ffffff", "text": "#1d1a16", "accent": "#d9622b"},
-    "fonts": {"display": "Georgia, serif", "body": "system-ui, sans-serif"},
+    "fonts": {"display": "Fraunces", "body": "Instrument Sans", "why": "Un serif morbido per un forno di quartiere."},
+    "art_direction": {
+        "layout": "Una colonna stretta che si apre in fasce a tutta larghezza.",
+        "hero": "La foto della brace a tutto schermo, il nome in basso a sinistra.",
+        "signature": "Un cerchio arancione, come una scorza.",
+        "motion": "Il cerchio ruota lentamente.",
+    },
     "hero": {"headline": "Forno Zagara", "subline": "Impasto di 48 ore, forno a legna.", "cta_label": "Chiama per prenotare"},
     "sections": [
-        {"id": "hero", "title": "Forno Zagara", "purpose": "Dire chi siamo."},
-        {"id": "menu", "title": "Le pizze", "purpose": "Mostrare le pizze e i prezzi."},
-        {"id": "contact", "title": "Dove siamo", "purpose": "Far chiamare."},
+        {"id": "hero", "title": "Forno Zagara", "purpose": "Dire chi siamo.", "treatment": "Foto a tutto schermo.", "photo": ""},
+        {"id": "menu", "title": "Le pizze", "purpose": "Mostrare le pizze e i prezzi.", "treatment": "Carta stampata.", "photo": ""},
+        {"id": "contact", "title": "Dove siamo", "purpose": "Far chiamare.", "treatment": "Fascia scura.", "photo": ""},
     ],
 }
 

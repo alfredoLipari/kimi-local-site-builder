@@ -54,6 +54,22 @@ class EvidenceGate(unittest.TestCase):
         html = page('<section data-section="hours">Da giugno aperti anche a pranzo dalle 12:30</section>')
         self.assertEqual(kinds(html, ["Da giugno apriamo anche a pranzo, dalle 12:30 alle 15:00"]), [])
 
+    def test_web_fonts_and_given_photos_are_fine(self):
+        photo = FACTS["photos"][0]["url"].replace("w=1800", "w=900")
+        html = (
+            '<html><head><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+            '<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&display=swap" rel="stylesheet">'
+            f"<style>.hero{{background:url('{FACTS['photos'][1]['url']}') center/cover}}</style></head><body>"
+            f'<section data-section="hero"><img src="{photo}" alt="Il forno"></section></body></html>'
+        )
+        self.assertEqual(check(html, FACTS), [])
+
+    def test_photo_nobody_gave_us(self):
+        other = "https://images.unsplash.com/photo-0000000000000-aaaaaaaaaaaa?w=1200"
+        self.assertEqual(kinds(page(f'<section data-section="about"><img src="{other}" alt=""></section>')), [("image", "about")])
+        css = f"<html><head><style>body{{background:url({other})}}</style></head><body></body></html>"
+        self.assertEqual(kinds(css), [("image", "page")])
+
     def test_styles_and_scripts_are_ignored(self):
         self.assertEqual(kinds("<html><head><style>.a{margin:12.30px;width:1962px}</style></head><body></body></html>"), [])
 

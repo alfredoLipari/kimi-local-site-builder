@@ -27,6 +27,9 @@ COPYRIGHT_YEAR = re.compile(r"(?:©|&copy;|\(c\)|copyright)\s*(?:\d{4}\s*[-–]\
 
 # Links a page may build from facts it already has, without them being facts themselves.
 DERIVED_HOSTS = {"wa.me", "api.whatsapp.com", "maps.google.com", "www.google.com", "maps.apple.com", "www.openstreetmap.org"}
+# Web fonts are presentation, not a statement about the business.
+FONT_HOSTS = {"fonts.googleapis.com", "fonts.gstatic.com"}
+CSS_URL = re.compile(r"url\(\s*['\"]?([^'\")\s]+)['\"]?\s*\)")
 
 
 @dataclass(frozen=True)
@@ -50,8 +53,12 @@ class _Text(HTMLParser):
         if tag in ("script", "style"):
             self._skip += 1
         for name, value in attrs:
-            if name in ("href", "src") and value:
+            if name in ("href", "src", "poster") and value:
                 self.links.append(value)
+            elif name == "srcset" and value:
+                self.links += [part.split()[0] for part in value.split(",") if part.strip()]
+            elif name == "style" and value:
+                self.links += CSS_URL.findall(value)
             elif name in ("alt", "title", "aria-label", "content") and value:
                 self.text.append(value)
 
@@ -60,7 +67,9 @@ class _Text(HTMLParser):
             self._skip -= 1
 
     def handle_data(self, data: str) -> None:
-        if not self._skip:
+        if self._skip:
+            self.links += CSS_URL.findall(data)  # background images count as images
+        else:
             self.text.append(data)
 
 
@@ -127,6 +136,9 @@ class Evidence:
         for s in strings:
             if re.fullmatch(r"\d+(?:[.,]\d+)?", s.strip()):
                 self.numbers.add(float(s.strip().replace(",", ".")))
+        photos = facts.get("photos") or []
+        self.photos = [p["url"] if isinstance(p, dict) else str(p) for p in photos]
+        self.photo_hosts = {urlparse(u).netloc.lower() for u in self.photos}
         self.hosts = {h.lower() for h in re.findall(r"https?://([^/\s\"']+)", self.text)}
         self.hosts |= {h.lower() for h in re.findall(r"\b((?:[\w-]+\.)+[a-z]{2,})\b", self.text)}
 
@@ -157,7 +169,12 @@ class Evidence:
         if host in ("wa.me", "api.whatsapp.com"):
             number = _digits(url.path) or _digits(url.query)
             return None if self.supports("phone", number) else f"WhatsApp link|{link}"
-        if host in DERIVED_HOSTS or host in self.hosts or host.removeprefix("www.") in self.hosts:
+        if host in DERIVED_HOSTS or host in FONT_HOSTS:
+            return None
+        if host in self.photo_hosts:
+            # an image host is only as good as the exact photo: the path must be one we were given
+            return None if any(url.path == urlparse(u).path for u in self.photos) else f"image|{link}"
+        if host in self.hosts or host.removeprefix("www.") in self.hosts:
             return None
         return f"link|{link}"
 

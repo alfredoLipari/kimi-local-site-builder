@@ -1,0 +1,70 @@
+{
+  "art_direction": {
+    "hero": "Schermo intero con la foto della pizza accanto alla brace rossa, trattata molto scura ai bordi con un velo sfumato dal basso. Il nome 'Forno Zagara' in Fraunces grandissimo, appoggiato in basso a sinistra, spezzato su due righe con la 'Z' che trabocca fuori margine; sopra, in Space Grotesk minuscolo e spaziato, 'Via dei Candelai · Palermo'. A destra, in verticale lungo il bordo, la scritta 'impasto 48 ore' ruotata di 90 gradi. L'occhio va prima alla brace, poi al nome: anche coperto il logo, si capisce che è un forno a legna di strada, di notte.",
+    "layout": "La pagina è costruita come una serata al forno: si parte nella brace scura, si esce nella luce della sala. Sezioni a densità alternata — hero pieno e buio, blocco chiaro e arioso per il racconto, menu denso su fondo bruno, recensioni di nuovo sul chiaro ma asimmetriche, chiusura scura. Griglia di 12 colonne rispettata solo a metà: titoli e foto debordano di proposito, come la pizza sul piano del forno. Mai due sezioni vicine con lo stesso schema: pieno / due colonne / lista / libero / due colonne rovesciate.",
+    "motion": "Solo CSS: la zona della brace nell'hero ha un alone arancione che pulsa lentamente (opacity 0.55–0.8, 6s, ease-in-out infinito) sopra la foto; i riccioli di scorza tra le sezioni si disegnano con un tratto animato allo scroll (stroke-dashoffset); nel menu, passando il mouse su una voce, il nome scivola di 8px a destra e il ricciolo accanto ruota di mezzo giro; le foto entrano con una lieve risalita di 20px e fade, una sola volta.",
+    "signature": "Un ricciolo di scorza d'arancia: una linea arancio #e8822a a spirale, disegnata come tratto vettoriale sottile, che ricorre come separatore tra le sezioni, come puntino delle 'i' nel logo e come marcatori nel menu. È la zagara della pizza di casa, ridotta a un gesto solo."
+  },
+  "concept": "Una piccola sala dietro il mercato del Capo dove la Sicilia finisce nell'impasto — grani antichi, alici di Sciacca, scorza d'arancia — e il sito odora di brace e di zagara.",
+  "fonts": {
+    "body": "Space Grotesk",
+    "display": "Fraunces",
+    "why": "Fraunces, con le sue curve morbide e il neretto quasi burroso, ha il calore del forno a legna; Space Grotesk le tiene testa con un passo asciutto da insegna di quartiere, e insieme evitano il solito abbinamento script+sans da pizzeria."
+  },
+  "hero": {
+    "cta_label": "Prenota un tavolo",
+    "headline": "L'impasto aspetta 48 ore. Tu no.",
+    "subline": "Forno a legna, farine siciliane di grani antichi, una ventina di coperti a due passi dal mercato del Capo. Aperti a cena."
+  },
+  "palette": {
+    "accent": "#e8822a",
+    "background": "#1e120c",
+    "surface": "#f5eee1",
+    "text": "#f0e6d6"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "photo": "https://images.unsplash.com/photo-1575634803105-0605a27d02a4?auto=format&fit=crop&w=1800&q=75",
+      "purpose": "Dire subito che questo è un forno a legna vero, piccolo e palermitano, e spingere a prenotare perché i posti sono pochi.",
+      "title": "Forno Zagara",
+      "treatment": "Foto della brace a schermo intero, fondo scuro, nome in Fraunces enorme in basso a sinistra, claim e CTA telefonica sotto; scritta verticale 'impasto 48 ore' sul bordo destro."
+    },
+    {
+      "id": "about",
+      "photo": "https://images.unsplash.com/photo-1516463746734-30c21edde5af?auto=format&fit=crop&w=1800&q=75",
+      "purpose": "Raccontare perché questa pizza è diversa: 48 ore di lievitazione, grani antichi siciliani, e il mercato del Capo come dispensa di quartiere.",
+      "title": "Dal mercato al forno",
+      "treatment": "Sezione chiara su fondo crema: due colonne sfalsate, testo a sinistra in corpo generoso, foto del banco di verdure a destra che deborda in alto sulla sezione precedente; sotto, la foto della pizza sul piano del forno a tutta largura come intermezzo scuro. Ricciolo di scorza come capoverso."
+    },
+    {
+      "id": "menu",
+      "photo": "https://images.unsplash.com/photo-1682264788192-9abdec90c425?auto=format&fit=crop&w=1800&q=75",
+      "purpose": "Far leggere il menu come si legge una lavagna: poche pizze, ingredienti che parlano siciliano, con la Zagara in evidenza come pizza di casa.",
+      "title": "Le pizze",
+      "treatment": "Fondo bruno scuro, elenco verticale a righe larghe: nome in Fraunces grande a sinistra, ingredienti in Space Grotesk chiaro al centro, prezzo allineato a destra con una linea tratteggiata che lo raggiunge. La voce 'Zagara' occupa più spazio, marcata dal ricciolo di scorza pieno e dalla foto verticale della margherita che le fa da contrappunto in una colonna laterale."
+    },
+    {
+      "id": "reviews",
+      "photo": "",
+      "purpose": "Confermare con voci vere ciò che il sito promette: impasto leggero, sfincione che vale il viaggio, e avvisare che conviene prenotare.",
+      "title": "Dicono di noi",
+      "treatment": "Fondo crema, le due citazioni impaginate come blocchi liberi e sfalsati — la prima grande in Fraunces corsivo che attraversa due terzi della pagina, la seconda più piccola e rientrata a destra, con autore in Space Grotesk; in cima, la valutazione 4,7 su Google in cifre enormi arancioni."
+    },
+    {
+      "id": "hours",
+      "photo": "",
+      "purpose": "Dare gli orari in un secondo: solo cena, lunedì chiuso.",
+      "title": "Quando ci trovi",
+      "treatment": "Banda scura stretta, orari composti come una sola riga tipografica gigante — 'Mar–Dom · 19:00–23:30' in Fraunces che occupa tutta la larghezza, 'Lunedì chiuso' barrato a mano con un tratto di scorza arancio sopra."
+    },
+    {
+      "id": "contact",
+      "photo": "https://images.unsplash.com/photo-1536622308015-0740925b8221?auto=format&fit=crop&w=1800&q=75",
+      "purpose": "Chiudere con l'invito pratico: telefona per prenotare o passa a ritirare, ecco dove siamo.",
+      "title": "Vieni a cena",
+      "treatment": "Chiusura scura con la foto della pizza con cipolla sul forno come sfondo a mezza altezza nella parte alta; sotto, su fondo bruno, numero di telefono in Fraunces molto grande e cliccabile, poi indirizzo, email e le due opzioni 'prenotazione telefonica' e 'asporto' scritte per esteso, senza bottoni a pillola. Il ricciolo di scorza chiude la pagina in basso al centro."
+    }
+  ],
+  "tone": "Caldo e diretto, da bancone del mercato: frasi corte, ingredienti nominati con orgoglio, niente superlativi da menu turistico."
+}

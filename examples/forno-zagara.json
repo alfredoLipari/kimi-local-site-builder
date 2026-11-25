@@ -1,5 +1,5 @@
 {
-  "_note": "Forno Zagara is a made-up business for this demo. Any resemblance to a real one is accidental.",
+  "_note": "Forno Zagara is a made-up business for this demo. Any resemblance to a real one is accidental. The photos are stock pictures from Unsplash.",
   "language": "it",
   "name": "Forno Zagara",
   "category": "Pizzeria",
@@ -7,24 +7,79 @@
   "phone": "+39 091 555 0142",
   "email": "ciao@fornozagara.example",
   "hours": [
-    { "days": "Martedì – Domenica", "open": "19:00", "close": "23:30" },
-    { "days": "Lunedì", "open": null, "close": null, "note": "Chiuso" }
+    {
+      "days": "Martedì – Domenica",
+      "open": "19:00",
+      "close": "23:30"
+    },
+    {
+      "days": "Lunedì",
+      "open": null,
+      "close": null,
+      "note": "Chiuso"
+    }
   ],
   "about": "Forno a legna, impasto a lunga lievitazione di 48 ore con farine siciliane di grani antichi. Una sala piccola, una ventina di coperti, a due passi dal mercato del Capo.",
   "menu": [
-    { "name": "Margherita", "description": "Pomodoro siccagno, fiordilatte, basilico", "price": 8.0 },
-    { "name": "Zagara", "description": "Fiordilatte, alici di Sciacca, scorza d'arancia, finocchietto", "price": 12.5 },
-    { "name": "Capo", "description": "Pomodoro, tuma, cipolla di Giarratana, origano", "price": 10.0 },
-    { "name": "Sfincione della casa", "description": "Come in via dei Candelai da sempre: cipolla, caciocavallo, mollica tostata", "price": 6.5 }
+    {
+      "name": "Margherita",
+      "description": "Pomodoro siccagno, fiordilatte, basilico",
+      "price": 8.0
+    },
+    {
+      "name": "Zagara",
+      "description": "Fiordilatte, alici di Sciacca, scorza d'arancia, finocchietto",
+      "price": 12.5
+    },
+    {
+      "name": "Capo",
+      "description": "Pomodoro, tuma, cipolla di Giarratana, origano",
+      "price": 10.0
+    },
+    {
+      "name": "Sfincione della casa",
+      "description": "Come in via dei Candelai da sempre: cipolla, caciocavallo, mollica tostata",
+      "price": 6.5
+    }
   ],
   "reviews": {
     "source": "Google",
     "rating": 4.7,
     "quotes": [
-      { "author": "Giulia R.", "text": "L'impasto più leggero che abbia mangiato a Palermo. La Zagara con le alici e l'arancia è una sorpresa." },
-      { "author": "Marco T.", "text": "Posto piccolo, conviene prenotare. Sfincione da tornarci apposta." }
+      {
+        "author": "Giulia R.",
+        "text": "L'impasto più leggero che abbia mangiato a Palermo. La Zagara con le alici e l'arancia è una sorpresa."
+      },
+      {
+        "author": "Marco T.",
+        "text": "Posto piccolo, conviene prenotare. Sfincione da tornarci apposta."
+      }
     ]
   },
-  "services": ["Prenotazione telefonica", "Asporto"],
-  "photos": []
+  "services": [
+    "Prenotazione telefonica",
+    "Asporto"
+  ],
+  "photos": [
+    {
+      "url": "https://images.unsplash.com/photo-1575634803105-0605a27d02a4?auto=format&fit=crop&w=1800&q=75",
+      "shows": "Una pizza che cuoce nel forno a legna, accanto alla brace rossa. Scura, calda, orizzontale.",
+      "credit": "Arthur Brognoli / Unsplash"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1682264788192-9abdec90c425?auto=format&fit=crop&w=1800&q=75",
+      "shows": "Una margherita vista dall'alto su un piatto bianco, su un tavolo di pietra scura. Verticale.",
+      "credit": "Joanie Simon / Unsplash"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1536622308015-0740925b8221?auto=format&fit=crop&w=1800&q=75",
+      "shows": "Una pizza con cipolla rossa sul piano del forno a legna, le fiamme sullo sfondo. Orizzontale.",
+      "credit": "Emily Powers / Unsplash"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1516463746734-30c21edde5af?auto=format&fit=crop&w=1800&q=75",
+      "shows": "Un banco di verdure in un mercato di strada a Palermo, con il venditore tra le cassette. Orizzontale.",
+      "credit": "Tomas Anton Escobar / Unsplash"
+    }
+  ]
 }
